@@ -3,7 +3,6 @@ import sys
 import time
 import psutil
 import os
-import resource
 
 from airport_counter import AirportCounter
 
@@ -14,25 +13,21 @@ filename = sys.argv[1]
 air_lst = list()
 
 
-def add_takeoff(airport_name):
+def add_takeoff(ap_name):
     for airport in air_lst:
-        if airport.name == airport_name:
+        if airport.name == ap_name:
             airport.add_takeoff()
             return
-    airport = AirportCounter(airport_name)
-    airport.add_takeoff()
-    air_lst.append(airport)
+    air_lst.append(AirportCounter.new_takeoff(ap_name))
     return
 
 
-def add_landing(airport_name):
+def add_landing(ap_name):
     for airport in air_lst:
-        if airport.name == airport_name:
+        if airport.name == ap_name:
             airport.add_landing()
             return
-    airport = AirportCounter(airport_name)
-    airport.add_landing()
-    air_lst.append(airport)
+    air_lst.append(AirportCounter.new_landing(ap_name))
     return
 
 
@@ -51,5 +46,4 @@ for i in range(10):
 
 print "Time processing", time.time() - time_reading
 print "Elapsed total time ", time.time() - t0
-info = psutil.Process(os.getpid()).memory_info().rss
-print "Memory footprint", info / 1000, "Kb"
+print "Memory footprint", psutil.Process(os.getpid()).memory_info().rss / 1000, "Kb"

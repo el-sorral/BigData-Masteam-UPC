@@ -4,6 +4,18 @@ class AirportCounter:
     take_offs = 0
     landings = 0
 
+    @staticmethod
+    def new_landing(name):
+        airport = AirportCounter(name)
+        airport.add_landing()
+        return airport
+
+    @staticmethod
+    def new_takeoff(name):
+        airport = AirportCounter(name)
+        airport.add_takeoff()
+        return airport
+
     def __init__(self, name):
         self.name = name
 
