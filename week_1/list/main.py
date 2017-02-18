@@ -31,7 +31,7 @@ def add_landing(ap_name):
     return
 
 
-with open(filename) as f:
+with open(filename, 'r') as f:
     for line in f:
         line_split = line.split(';')
         add_takeoff(line_split[0])
@@ -46,4 +46,4 @@ for i in range(10):
 
 print "Time processing", time.time() - time_reading
 print "Elapsed total time ", time.time() - t0
-print "Memory footprint", psutil.Process(os.getpid()).memory_info().rss / 1000, "Kb"
+print "Memory footprint", psutil.Process(os.getpid()).memory_info().vms / 1000, "Kb"
