@@ -1,6 +1,5 @@
 #!/usr/bin/python
 import sys
-import operator
 import time
 import psutil, os
 
@@ -44,13 +43,15 @@ with open(filename, 'r') as f:
 def get_totals(a):
     return air_dict[a].totals
 
+total = len(air_dict)
 
-print("AIRPORT NAME \t # TOTAL MOVEMENTS \t # TAKE OFFs \t # LANDINGS")
+print '%-15s %-15s %-15s %-15s' % ("AIRPORT NAME", "# TOTAL MOVEMENTS", "# TAKE OFFs", "# LANDINGS")
 for i in range(10):
     idx = max(air_dict, key=get_totals)
     print air_dict[idx]
     del air_dict[idx]
 
-print "Time processing", time.time() - time_reading
+print "Total of flights", total
+print "Time of file processing", time.time() - time_reading
 print "Elapsed total time ", time.time() - t0
 print "Memory footprint", psutil.Process(os.getpid()).memory_info().vms / 1000, "Kb"

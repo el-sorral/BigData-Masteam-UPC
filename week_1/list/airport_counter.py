@@ -34,7 +34,7 @@ class AirportCounter:
         return self.name == item
 
     def __str__(self):
-        return self.name + "\t" + str(self.totals) + "\t" + str(self.landings) + "\t" + str(self.take_offs)
+        return '%-17s %-17i %-17i %-17i' % (self.name, self.totals, self.landings, self.take_offs)
 
     def __repr__(self):
         return str(self) + "\n"
