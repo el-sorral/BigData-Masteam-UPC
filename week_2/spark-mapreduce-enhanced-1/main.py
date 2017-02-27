@@ -27,13 +27,13 @@ def main():
 
 def load_file():
     sc = SparkContext(appName="Top10Airports")
-    return sc.textFile("/home/gerard/Repos/BigData-Masteam-UPC/Top10Airports/datasets/traffic1day.exp2",
-                       minPartitions=4)
+    return sc.textFile("/home/gerard/Repos/BigData-Masteam-UPC/Top10Airports/datasets/traffic1week.exp2",
+                       minPartitions=7)
 
 
 def mapreduce(rdd_file):
     airport_list = rdd_file.map(lambda l: l.split(";"))
-    airport_list = airport_list.flatMap(lambda l: [(l[0], 'takeoff'), (l[1], 'landing')])
+    airport_list = airport_list.flatMap(lambda l: [(l[0], {'takeoff':1,'landing':0}), (l[1], {'takeoff':1,'landing':0})])
     return airport_list.reduceByKey(join_tupples)
 
 
