@@ -36,9 +36,15 @@ def reduce_by_key(d, airport):
     return d
 
 
+def extend_list(l, l1, l2):
+    l.append(l1)
+    l.append(l2)
+    return l
+
+
 # [name, takeoff, arrival, totals]
 def mapreduce(splitted):
-    joined = reduce(lambda x, y: x + [[y[0], 1, 0, 1], [y[1], 0, 1, 1]], splitted, [])
+    joined = reduce(lambda x, y: extend_list(x, [y[0], 1, 0, 1], [y[1], 0, 1, 1]), splitted, [])
     single_array = reduce(lambda x, y: reduce_by_key(x, y), joined, dict())
     return single_array
 
@@ -46,6 +52,7 @@ def mapreduce(splitted):
 def get_totals(air_dict):
     def f(idx):
         return air_dict[idx][3]
+
     return f
 
 
