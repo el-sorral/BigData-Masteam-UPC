@@ -63,9 +63,6 @@ def print_table(air_dict):
         e = air_dict[idx]
         print '%-17s %-17i %-17i %-17i' % (e[0], e[3], e[1], e[2])
         del air_dict[idx]
-        # print '%-15s %-15s %-15s %-15s' % ("AIRPORT NAME", "# TOTAL MOVEMENTS", "# TAKE OFFs", "# LANDINGS")
-        # for e in ordered_result:
-        #     print '%-17s %-17i %-17i %-17i' % (e[0], e[1]['takeoff'] + e[1]['landing'], e[1]['takeoff'], e[1]['landing'])
 
 
 if __name__ == "__main__":
