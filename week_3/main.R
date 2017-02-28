@@ -1,11 +1,9 @@
 source("plain_R/top10airports.R")
 
 main <- function(filepath){
-  filepath
-  flights_table <- read.table(filepath, header=T)
-  flights_table
+  print(filepath)
+  flights_table <- as.data.frame(read.csv(filepath, header=FALSE, sep = ";"))
   plainR(flights_table)
-  
 }
 
 main("./datasets/traffic1day.exp2")
