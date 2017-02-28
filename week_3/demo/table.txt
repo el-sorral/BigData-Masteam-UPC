@@ -1,0 +1,7 @@
+Name	Age	Height	Weight
+Rose	25	167	65
+Mary	21	160	57
+Peter	23	178	83
+Martha	23      163	65
+George	19      185	90
+
