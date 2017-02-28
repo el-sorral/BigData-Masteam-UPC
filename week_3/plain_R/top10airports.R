@@ -1,8 +1,6 @@
 
 
 plainR <- function(flights_table){
-  #origin <- flights_table[,1]
-  #destination <- flights_table[,2]
   
   origin <- table(flights_table[,1])
   origin <- as.data.frame(origin)
@@ -16,6 +14,5 @@ plainR <- function(flights_table){
   merged[is.na(merged)] <- 0
   merged$Totals <- merged$Origin + merged$Destiny
   
-  
-  View(merged[order(-merged$Totals), ])
+  View(head(merged[order(-merged$Totals), ], 10))
 }

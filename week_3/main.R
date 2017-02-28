@@ -6,5 +6,9 @@ main <- function(filepath){
   plainR(flights_table)
 }
 
-main("./datasets/traffic1day.exp2")
+# Plain R
+plain_1_hour = system.time(main("./datasets/traffic1hour.exp2"))
+plain_1_day = system.time(main("./datasets/traffic1day.exp2"))
+plain_1_week = system.time(main("./datasets/traffic1week.exp2"))
 
+print("D")
