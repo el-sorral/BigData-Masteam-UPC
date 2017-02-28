@@ -1,3 +1,7 @@
 **/.idea/*
 **/*.pyc
 **/*.zip
+
+**/metastore_db/*
+**/derby.log
+**/*.log
