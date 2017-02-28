@@ -13,8 +13,9 @@ plainR <- function(flights_table){
   colnames(destination) <- c("Airport", "Destiny")
   
   merged = merge(origin, destination, all=T)
+  merged[is.na(merged)] <- 0
+  merged$Totals <- merged$Origin + merged$Destiny
   
-  browser()
   
-  print(merged)
+  View(merged[order(-merged$Totals), ])
 }
