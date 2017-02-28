@@ -1,9 +1,10 @@
+#!/usr/bin/python
+
 import os
 import psutil
-
 import time
 
-from pyspark import SparkContext, SparkConf
+from pyspark import SparkContext
 
 
 def split_lines(l):
