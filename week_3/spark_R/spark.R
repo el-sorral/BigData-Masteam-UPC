@@ -17,9 +17,10 @@ destination <- select(flights_r, airport=V2)
 origin <- mutate(origin, departure = 1, arrival=0, total=1)
 destination <- mutate(destination, departure=1, arrival = 1, total=1)
 
-origin %>% 
-  group_by(airport)
+origin %>% group_by(airport)
 destination %>% group_by(airport)
+
+
 
   
 
