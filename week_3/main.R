@@ -1,5 +1,5 @@
-source("plain_R/top10airports.R")
-source("spark_R/top10airports.R")
+source("plain_R/plain.R")
+source("spark_R/spark.R")
 
 read <- function(filepath) {
   return (as.data.frame(read.csv(filepath, header=FALSE, sep = ";")))
@@ -16,3 +16,14 @@ main <- function(){
   one_week <- read("./datasets/traffic1day.exp2")
   plain_1_week = system.time(plainR(one_week))
 }
+
+main2 <- function(){
+  sc <- startContext()
+  # Plain R
+  one_hour <- read("./datasets/traffic1hour.exp2")
+  plain_1_hour = system.time(sparkR(sc, one_hour))
+  
+  stopContext(sc)
+}
+
+main2()

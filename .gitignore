@@ -5,3 +5,6 @@
 **/metastore_db/*
 **/derby.log
 **/*.log
+
+
+**/.Rhistory
