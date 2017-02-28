@@ -37,7 +37,7 @@ def main():
 def load_file():
     filename = sys.argv[1]
     sc = SparkContext(appName="Top10Airports")
-    return sc.textFile(filename, minPartitions=7)
+    return sc.textFile(filename, minPartitions=4)
 
 
 def print_table(ordered_result):
