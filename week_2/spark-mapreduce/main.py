@@ -4,6 +4,8 @@ import os
 import psutil
 import time
 
+import sys
+
 from pyspark import SparkContext
 
 
@@ -30,9 +32,9 @@ def main():
 
 
 def load_file():
+    filename = sys.argv[1]
     sc = SparkContext(appName="Top10Airports")
-    return sc.textFile("/home/gerard/Repos/BigData-Masteam-UPC/Top10Airports/datasets/traffic1week.exp2",
-                       minPartitions=4)
+    return sc.textFile(filename, minPartitions=4)
 
 
 def mapreduce(rdd_file):
