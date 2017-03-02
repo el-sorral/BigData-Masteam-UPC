@@ -1,29 +1,24 @@
 source("plain_R/plain.R")
 source("spark_R/spark.R")
 
-read <- function(filepath) {
-  return (as.data.frame(read.csv(filepath, header=FALSE, sep = ";")))
+library(reshape2)
+
+main <- function() {
+  times = rbind(
+    plainTimes(),
+    sparkTimes()
+  )
+  
+  df <- melt(times, id.vars = "Method")  #the function melt reshapes it from wide to long
+  assign("time_df", df, envir = .GlobalEnv)
+  
+  graph = ggplot(df, aes(variable, value, group=factor(Method))) + 
+    geom_line(aes(color=factor(Method))) +
+    scale_x_discrete(name="Database") +
+    scale_y_continuous(name="Time (s)") +
+    ggtitle("PlainR vs Sparklyr")
+  graph
+  
 }
 
-main <- function(){
-  # Plain R
-  one_hour <- read("./datasets/traffic1hour.exp2")
-  plain_1_hour = system.time(plainR(one_hour))
-  
-  one_day <- read("./datasets/traffic1day.exp2")
-  plain_1_day = system.time(plainR(one_day))
-  
-  one_week <- read("./datasets/traffic1day.exp2")
-  plain_1_week = system.time(plainR(one_week))
-}
-
-main2 <- function(){
-  sc <- startContext()
-  # Plain R
-  one_hour <- read("./datasets/traffic1hour.exp2")
-  plain_1_hour = system.time(sparkR(sc, one_hour))
-  
-  stopContext(sc)
-}
-
-main2()
+main()
