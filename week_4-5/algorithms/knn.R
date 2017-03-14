@@ -1,8 +1,11 @@
 # load the library
 library(caret)
 library(doParallel)
+set.seed(1)
 
-cl <- makeCluster(detectCores())
+t <- proc.time()
+
+cl <- makeCluster(detectCores()-1)
 registerDoParallel(cl)
 
 # Prepare train data
@@ -21,12 +24,10 @@ model <- train(train_data, train_labels, method = "knn")
 print.train(model)
 plot.train(model)
 
-set.seed(1)
 
-partGrid <- expand.grid(cp = (0:10)*0.01)
-knnGrid <- expand.grid(k = 1:5)
-
-grid <- expand.grid(k= 1:5, cp = (0:5)*0.1)
+#partGrid <- expand.grid(cp = (0:10)*0.01)
+#knnGrid <- expand.grid(k = 1:5)
+#grid <- expand.grid(k= 1:5, cp = (0:5)*0.1)
 
 
 # Predict values
@@ -42,4 +43,8 @@ res <- confusionMatrix(predictions, test_labels)
 res
 res$overall["Accuracy"]
 
+proc.time()-t
 
+# Other result
+model$results
+max(model$results$Accuracy)
