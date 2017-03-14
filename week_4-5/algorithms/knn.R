@@ -5,10 +5,8 @@ library(doParallel)
 cl <- makeCluster(detectCores())
 registerDoParallel(cl)
 
-# load the dataset
+# Prepare train data
 digits_csv <- read.csv("./digits.csv", head = FALSE)
-
-#intrain <- createDataPartition(y=digits_csv[,65], p=1, list=FALSE)
 train_data <- digits_csv[,-65]
 train_labels <- as.factor(digits_csv[, 65])
 
