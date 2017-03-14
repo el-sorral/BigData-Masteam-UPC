@@ -22,7 +22,15 @@ test_labels <- as.factor(digits_csv[intest, 65])
 # Train the model
 model <- train(train_data, train_labels, method = "rpart")
 
+print.train(model)
 plot.train(model)
+
+set.seed(1)
+
+partGrid <- expand.grid(cp = (0:10)*0.01)
+knnGrid <- expand.grid(k = 1:5)
+
+grid <- expand.grid(k= 1:5, cp = (0:5)*0.1)
 
 # Predict values
 predictions <- predict(model, test_data)
