@@ -20,10 +20,12 @@ test_labels <- as.factor(test_csv[, 65])
 
 fitControl <- trainControl(method = "cv",
                         number = 10)
+knnGrid <- expand.grid(k = c(1,5,7,9,15))
 
 # Train the model
 model <- train(train_data, train_labels, 
                trControl = fitControl,
+               tuneGrid = knnGrid,
                method = "knn")
 
 print.train(model)
