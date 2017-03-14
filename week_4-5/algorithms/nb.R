@@ -1,5 +1,9 @@
 # load the library
 library(caret)
+library(doParallel)
+
+cl <- makeCluster(detectCores())
+registerDoParallel(cl)
 
 # load the dataset
 digits_csv <- read.csv("./digits.csv", head = FALSE)
