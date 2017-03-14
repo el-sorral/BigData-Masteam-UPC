@@ -12,8 +12,8 @@ train_labels <- as.factor(digits_csv[, 65])
 
 # Prepare test data
 test_csv <- read.csv("./test.csv", head = FALSE)
-test_data <- digits_csv[, -65]
-test_labels <- as.factor(digits_csv[, 65])
+test_data <- test_csv[, -65]
+test_labels <- as.factor(test_csv[, 65])
 
 # Train the model
 model <- train(train_data, train_labels, method = "rpart")
