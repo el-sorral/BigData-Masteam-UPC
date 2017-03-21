@@ -38,7 +38,9 @@ plot.train(model)
 
 
 # Predict values
+t2 <- proc.time()
 predictions <- predict(model, test_data)
+prediction <- proc.time() - t2
 
 # print results
 output <- data.frame(PREDICT=predictions, LABEL=test_labels,
@@ -55,3 +57,6 @@ proc.time()-t
 # Other result
 model$results
 max(model$results$Accuracy)
+
+print("Prediction Time")
+prediction

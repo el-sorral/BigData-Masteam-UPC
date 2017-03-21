@@ -21,18 +21,17 @@ test_labels <- as.factor(test_csv[, 65])
 fitControl <- trainControl(method = "cv",
                            number = 10)
 
+grid <- expand.grid(sigma= (9)*0.00001, C = (4:6)*0.1)
+
 # Train the model
 model <- train(train_data, train_labels, 
                trControl = fitControl,
+               tuneGrid = grid,
                method = "svmRadial")
 
 print.train(model)
 plot.train(model)
 
-
-#partGrid <- expand.grid(cp = (0:10)*0.01)
-#knnGrid <- expand.grid(k = 1:5)
-#grid <- expand.grid(k= 1:5, cp = (0:5)*0.1)
 
 
 # Predict values
