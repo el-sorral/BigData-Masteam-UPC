@@ -39,6 +39,9 @@ plot.train(model)
 
 # Predict values
 t2 <- proc.time()
+print("Train Time")
+print(t2-t)
+
 predictions <- predict(model, test_data)
 prediction <- proc.time() - t2
 
